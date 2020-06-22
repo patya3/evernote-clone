@@ -1,0 +1,67 @@
+<ion-header #header mode="md">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button
+        (click)="done()"
+        color="primary"
+        [disabled]="note.title == ''"
+      >
+        Done
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="cancel()" color="primary">
+        Cancel
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" mode="md">
+  <ion-row class="ion-no-padding action-row">
+    <ion-col size="9">
+      <ion-button
+        (click)="moveNote()"
+        fill="clear"
+        color="primary"
+        size="small"
+        class="ion-text-left"
+      >
+        <ion-icon slot="start" name="bookmarks"></ion-icon>
+        {{note.notebook ? note.notebook.name : 'Select notebook' }}
+      </ion-button>
+    </ion-col>
+    <ion-col size="3" class="ion-text-right" *ngIf="id">
+      <ion-button
+        (click)="toggleFavorite()"
+        fill="clear"
+        color="primary"
+        size="small"
+        class="ion-text-left"
+      >
+        <ion-icon slot="icon-only" name="star" *ngIf="note.favorite"></ion-icon>
+        <ion-icon
+          slot="icon-only"
+          name="star-outline"
+          *ngIf="!note.favorite"
+        ></ion-icon>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+  <ion-input
+    [autofocus]="true"
+    [(ngModel)]="note.title"
+    placeholder="Title"
+    class=" note-title"
+  ></ion-input>
+  <!-- <ion-textarea
+    placeholder="Start writing"
+    [(ngModel)]="note.content"
+    rows="6"
+  ></ion-textarea> -->
+  <quill-editor
+    [(ngModel)]="note.content"
+    [styles]="{height: '10em'}"
+  ></quill-editor>
+</ion-content>

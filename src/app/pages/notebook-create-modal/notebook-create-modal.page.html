@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="cancel()" color="primary">
+        Cancel
+      </ion-button>
+    </ion-buttons>
+    <ion-title>New Notebook</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="save()" color="primary" [disabled]="name == ''">
+        Save
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-input
+    [autofocus]="true"
+    [(ngModel)]="name"
+    placeholder="Notebook Name"
+    class="notebook-input"
+  ></ion-input>
+</ion-content>

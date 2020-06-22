@@ -1,0 +1,20 @@
+.custom-tabs {
+  contain: none;
+}
+
+.custom-tabs ion-tab-button:nth-child(2) {
+  ion-icon {
+    font-size: 3em;
+  }
+
+  --ion-color-base: var(--ion-color-success);
+  --color: #fff;
+  --color-selected: #ffffff;
+
+  border-radius: 50%;
+  max-width: 56px;
+  height: 56px;
+  margin-bottom: 30px;
+
+  box-shadow: 0 -3px 5px -1px rgba(0, 0, 0, 0.2);
+}

@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Favorites</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item-sliding *ngFor="let note of notes | async">
+      <ion-item button (click)="openNote(note.id)">
+        <ion-label class="ion-text-wrap">
+          <b>{{note.title}}</b>
+          <p [innerHTML]="note.content | slice:0:100"></p>
+        </ion-label>
+        <ion-item-options side="end">
+          <ion-item-option (click)="delete(note)" color="danger">
+            <ion-icon name="trash" slot="icon-only"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

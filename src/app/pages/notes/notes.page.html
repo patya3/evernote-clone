@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button
+        color="primary"
+        defaultHref="/app/notebooks"
+      ></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{notebook?.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item
+      button
+      *ngFor="let note of notes | async"
+      (click)="openNote(note.id)"
+    >
+      <ion-label class="ion-text-wrap">
+        <b>{{note.title}}</b>
+        <p [innerHTML]="note.content | slice:0:100">
+          <!-- {{(note.content.length > 50) ? (note.content | slice:0:50)+'...' :
+          (note.content)}} -->
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

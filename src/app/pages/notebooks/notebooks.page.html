@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title *ngIf="isModal">Move Note</ion-title>
+    <ion-searchbar
+      *ngIf="!isModal"
+      placeholder="Find a noteboook"
+      (ionChange)="filterNotebooks($event)"
+      [debounce]="0"
+    ></ion-searchbar>
+    <ion-buttons slot="end" *ngIf="isModal">
+      <ion-button (click)="close()" color="primary">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header class="sticky">
+      <ion-label>Notebooks</ion-label>
+      <ion-button (click)="addNotebook()" fill="clear" color="primary">
+        <ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-list-header>
+    <ion-item
+      *ngFor="let notebook of notebooks | async"
+      (click)="openNotebook(notebook)"
+      button
+    >
+      <ion-icon
+        slot="start"
+        name="book"
+        *ngIf="!isModal || currentSelected?.id != notebook.id"
+      ></ion-icon>
+      <ion-icon
+        slot="start"
+        name="checkmark"
+        color="primary"
+        *ngIf="currentSelected?.id == notebook.id"
+      ></ion-icon>
+      {{notebook.name}}
+    </ion-item>
+  </ion-list>
+</ion-content>
